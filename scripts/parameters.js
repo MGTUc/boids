@@ -1,20 +1,20 @@
 const separationfactor = 0.05;
-const separationzone = 2;
+const separationzone = 5;
 
-const alignmentfactor = 0.05;
+const alignmentfactor = 0.03;
 const alignmentzone = 20;
 
 const cohesionfactor = 0.0005;
 const cohesionzone = 20;
 
-const leftmargin = 50;
-const rightmargin = 750;
-const topmargin = 50;
-const bottommargin = 550;
-const turnfactor = 0.5;
+const leftmargin = 150;
+const rightmargin = 650;
+const topmargin = 150;
+const bottommargin = 450;
+const turnfactor = 0.05;
 
 const maxspeed = 3;
-const minspeed = 2;
+const minspeed = 1;
 
 export {separationfactor, separationzone, alignmentfactor, 
     alignmentzone, cohesionfactor, cohesionzone, 

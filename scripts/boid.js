@@ -1,7 +1,7 @@
 import { separationfactor, separationzone, alignmentfactor, 
-    alignmentzone, leftmargin, rightmargin, 
-    bottommargin, topmargin, turnfactor,
-    maxspeed, minspeed } from './parameters.js';
+    alignmentzone, cohesionfactor, cohesionzone, 
+    leftmargin, rightmargin, topmargin, bottommargin, 
+    turnfactor, maxspeed, minspeed } from './parameters.js';
 
 export default class Boid {
     x;
@@ -11,7 +11,7 @@ export default class Boid {
     constructor(x, y){
         this.x = x;
         this.y = y;
-        let tempdir = [Math.random(), Math.random()];
+        let tempdir = [Math.random()-0.5, Math.random()-0.5];
         let len = Math.sqrt(tempdir[0] ** 2 + tempdir[1] ** 2);
         this.speedvector = [tempdir[0] / len, tempdir[1] / len];
     }
@@ -93,7 +93,7 @@ export default class Boid {
         if (this.y > bottommargin){
             this.speedvector[1] -= turnfactor;
         }
-        speed = Math.sqrt(this.speedvector[0] ** 2 + this.speedvector[1] ** 2);
+        let speed = Math.sqrt(this.speedvector[0] ** 2 + this.speedvector[1] ** 2);
         if (speed > maxspeed){
             this.speedvector[0] = (this.speedvector[0] / speed) * maxspeed;
             this.speedvector[1] = (this.speedvector[1] / speed) * maxspeed;
@@ -107,12 +107,37 @@ export default class Boid {
     }
 
     draw(ctx){
-        let angle = Math.atan2(this.speedvector[1], this.speedvector[0]);
+        // let angle = Math.atan2(this.speedvector[1], this.speedvector[0]);
+        // ctx.beginPath();
+        // ctx.moveTo(this.x, this.y);
+        // ctx.lineTo(this.x + 20*Math.cos(angle+Math.PI/10+Math.PI), this.y + 20*Math.sin(angle+Math.PI/10+Math.PI));
+        // ctx.lineTo(this.x + 20*Math.cos(angle-Math.PI/10+Math.PI), this.y + 20*Math.sin(angle-Math.PI/10+Math.PI));
+        // ctx.lineTo(this.x, this.y);
+        // ctx.fill();
+        let angle = Math.atan2(this.speedvector[1], this.speedvector[0]) + Math.PI;
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(angle);
+
         ctx.beginPath();
-        ctx.moveTo(this.x, this.y);
-        ctx.lineTo(this.x + 30*Math.cos(angle+Math.PI/10+Math.PI), this.y + 30*Math.sin(angle+Math.PI/10+Math.PI));
-        ctx.lineTo(this.x + 30*Math.cos(angle-Math.PI/10+Math.PI), this.y + 30*Math.sin(angle-Math.PI/10+Math.PI));
-        ctx.lineTo(this.x, this.y);
+        // Smaller Body
+        ctx.moveTo(0, 0);
+        ctx.lineTo(20, 8);
+        ctx.lineTo(30, 0);
+        ctx.lineTo(20, -8);
+        ctx.lineTo(0, 0);
+        ctx.fillStyle = 'lightblue';
         ctx.fill();
+
+        // Original Tail
+        ctx.beginPath();
+        ctx.moveTo(30, 0);
+        ctx.lineTo(40, 10);
+        ctx.lineTo(40, -10);
+        ctx.lineTo(30, 0);
+        ctx.fillStyle = 'orange';
+        ctx.fill();
+
+        ctx.restore();
     }
 }
