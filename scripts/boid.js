@@ -3,7 +3,7 @@ import { separationfactor, separationzone, alignmentfactor,
     bottommargin, topmargin, turnfactor,
     maxspeed, minspeed } from './parameters.js';
 
-class Boid {
+export default class Boid {
     x;
     y;
     speedvector;

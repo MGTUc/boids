@@ -1,17 +1,22 @@
-separationfactor = 0.05;
-separationzone = 2;
+const separationfactor = 0.05;
+const separationzone = 2;
 
-alignmentfactor = 0.05;
-alignmentzone = 20;
+const alignmentfactor = 0.05;
+const alignmentzone = 20;
 
-cohesionfactor = 0.0005;
-cohesionzone = 20;
+const cohesionfactor = 0.0005;
+const cohesionzone = 20;
 
-leftmargin = 50;
-rightmargin = 750;
-topmargin = 50;
-bottommargin = 550;
-turnfactor = 0.5;
+const leftmargin = 50;
+const rightmargin = 750;
+const topmargin = 50;
+const bottommargin = 550;
+const turnfactor = 0.5;
 
-maxspeed = 3;
-minspeed = 2;
+const maxspeed = 3;
+const minspeed = 2;
+
+export {separationfactor, separationzone, alignmentfactor, 
+    alignmentzone, cohesionfactor, cohesionzone, 
+    leftmargin, rightmargin, topmargin, bottommargin, 
+    turnfactor, maxspeed, minspeed};
